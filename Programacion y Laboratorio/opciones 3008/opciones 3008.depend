@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1535640707 source:d:\castro carlos\opciones 3008\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+
