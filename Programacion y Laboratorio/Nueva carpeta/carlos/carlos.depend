@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1535721767 source:c:\users\alumno\desktop\carlos\main.c
+	<stdio.h>
+	<stdlib.h>
+	"UTN_INPUT.h"
+
+1535721755 c:\users\alumno\desktop\carlos\utn_input.h
+
+1535721779 source:c:\users\alumno\desktop\carlos\utn_input.c
+
