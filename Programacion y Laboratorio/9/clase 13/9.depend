@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1536848017 source:c:\users\alumno\desktop\9\clase 13\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"FUNCIONE DE NOMBRES.h"
+
+1536847907 source:c:\users\alumno\desktop\9\clase 13\funcione de nombres.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"FUNCIONE DE NOMBRES.h"
+
+1536848018 c:\users\alumno\desktop\9\clase 13\funcione de nombres.h
+
