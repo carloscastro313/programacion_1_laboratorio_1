@@ -30,7 +30,7 @@ int main()
             case '1':
                 if(T<4)
                 {
-                    modificacionDatos(nombreCompleto, sexo, legajo, nota1, nota2, nota3, promedio);
+                    seleccionDatos(nombreCompleto, sexo, legajo, nota1, nota2, nota3, promedio);
                 }else
                 {
                     printf("ya se llego al limite de datos");
@@ -42,6 +42,8 @@ int main()
                 cargarDatos(nombreCompleto, sexo, legajo, nota1, nota2, nota3, promedio);
 
                 break;
+            case '3':
+
 
             case '5':
                 printf("Que tenga un buen dia...");

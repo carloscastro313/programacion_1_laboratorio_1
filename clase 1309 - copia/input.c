@@ -9,6 +9,14 @@
 
 
 
+float promedioPromedio(float average)
+{
+    float promedioDePromedios;
+
+    promedioDePromedios=average/T;
+
+    return promedioDePromedios;
+}
 
 float calcularPromedio(int nota1, int nota2, int nota3)
 {
@@ -76,7 +84,7 @@ void inicializarvector(char nombre[][50], char sexo[],int legajo[], int nota1[],
 
     }
 }
-void modificacionDatos(char nombre[][50],char sexo[], int legajo[], int nota1[], int nota2[], int nota3[], float promedio[])
+void seleccionDatos(char nombre[][50],char sexo[], int legajo[], int nota1[], int nota2[], int nota3[], float promedio[])
 {
     int ingreseLegajo;
     int i;
@@ -89,7 +97,7 @@ void modificacionDatos(char nombre[][50],char sexo[], int legajo[], int nota1[],
     printf("Seleccion: ");
     scanf("%d",&ingreseLegajo);
 
-    while(isdigit(ingreseLegajo)!=0&&(ingreseLegajo>T||ingreseLegajo<0))
+   /* while(isdigit(ingreseLegajo)!=0&&(ingreseLegajo>T||ingreseLegajo<0))
     {
         printf("LEGAJO INEXISTENTE, REINGRESAR...\n");
 
@@ -100,14 +108,77 @@ void modificacionDatos(char nombre[][50],char sexo[], int legajo[], int nota1[],
         }
         printf("Seleccion: ");
         scanf("%d",&ingreseLegajo);
-    }
+    }*/
     cargarAlumnos( nombre, sexo, legajo, nota1, nota2, nota3, ingreseLegajo, promedio);
 }
 
 
+void calculoDePromedios(char nombre[][50], int legajo[], int nota1[], int nota2[], int nota3[], float promedio[])
+{
+    int i;
+    int flag=0;
+    char aprobados[T][50];
+    char alumnoMayor[50];
+    char alumnoMenor[50];
+    int promedioMayor;
+    int promedioMenor;
+    int alumnosAprobados=0;
+    int alumnoDesaprobados=0;
+    float porcentajeDesaprobados;
+    float porcentajeAprobados;
 
 
+    for(i=0;i<T;i++)
+    {
+        if(promedio[i]>=6 && legajo[i]!=-1)
+        {
+            strcpy(aprobados[i],nombre[i]);
+            alumnosAprobados++;
+        }else
+        {
+            if(promedio[i]>=6 && legajo[i]!=-1)
+            {
+                alumnoDesaprobados++;
+            }
+        }
 
+        if(flag==0)
+        {
+            strcpy(alumnoMenor,nombre[i]);
+            strcpy(alumnoMayor,nombre[i]);
+            promedioMayor=promedio[i];
+            promedioMenor=promedio[i];
+            flag=1;
+        }else
+        {
+            if(promedioMayor<promedio[i])
+            {
+                strcpy(alumnoMayor,nombre[i]);
+                promedioMayor=promedio[i];
+            }else
+            {
+                if(promedioMenor>promedio[i])
+                {
+                    strcpy(alumnoMenor,nombre[i]);
+                    promedioMenor=promedio[i];
+                }
+            }
+        }
+    }
+    porcentajeAprobados=promedioPromedio(alumnosAprobados);
+    porcentajeDesaprobados=promedioPromedio(alumnoDesaprobados);
+
+    cargarPromedios(aprobados,alumnoMayor, alumnoMenor,promedioMayor,promedioMenor, alumnosAprobados,  alumnosDesaprobados,  promedioAprobados[],  promedioDesaprobados[])
+{
+}
+
+void cargarPromedios(char aprobados[][50], char alumnoMayor[50], char alumnoMenor[50], int promedioMayor, int promedioMenor, int alumnosAprobados, int alumnosDesaprobados, float promedioAprobados[], float promedioDesaprobados[])
+{
+    int i;
+
+
+    system("pause");
+}
 
 
 
