@@ -8,3 +8,5 @@ void seleccionDatos(char [][50], char [], int[], int[], int[], int[], float[]);
 void cargarDatos(char [][50], char [], int[], int[], int[], int[], float[]);
 void inicializarvector(char [][50], char [], int[], int[], int[], int[], float[]);
 void calculoDePromedios(char [][50], int [], int [], int [], int [], float []);
+void cargarPromedios(char [][50], char [50], char [50], int, int, int, int, float [], float []);
+

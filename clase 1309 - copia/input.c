@@ -175,8 +175,11 @@ void calculoDePromedios(char nombre[][50], int legajo[], int nota1[], int nota2[
 void cargarPromedios(char aprobados[][50], char alumnoMayor[50], char alumnoMenor[50], int promedioMayor, int promedioMenor, int alumnosAprobados, int alumnosDesaprobados, float promedioAprobados[], float promedioDesaprobados[])
 {
     int i;
-
-
+    printf("%20s \n", "Aprobados");
+    for (i=0; i<T; i++)
+    {
+            printf("%20s\n",alumnoMayor );
+    }
     system("pause");
 }
 
