@@ -9,11 +9,11 @@
 
 
 
-float promedioPromedio(float average)
+float promedioPromedio(float buffer, int contador)
 {
     float promedioDePromedios;
 
-    promedioDePromedios=average/T;
+    promedioDePromedios=buffer/contador*100;
 
     return promedioDePromedios;
 }
@@ -26,7 +26,7 @@ float calcularPromedio(int nota1, int nota2, int nota3)
     return promedio;
 }
 
-void cargarAlumnos(char nombre[][50],char sexo[], int legajo[], int nota1[], int nota2[], int nota3[],int numeroAlumno, float promedio[])
+int cargarAlumnos(char nombre[][50],char sexo[], int edad[], int legajo[], int nota1[], int nota2[], int nota3[],int numeroAlumno, float promedio[])
 {
 
     printf("Ingrese su nombre completo: ");
@@ -47,6 +47,9 @@ void cargarAlumnos(char nombre[][50],char sexo[], int legajo[], int nota1[], int
         sexo[numeroAlumno]=toupper(sexo[numeroAlumno]);
     }
 
+    printf("Ingrese edad: ");
+    scanf("%d",&edad[numeroAlumno]);
+
     printf("Ingrese legajo: ");
     scanf("%d",&legajo[numeroAlumno]);
 
@@ -58,77 +61,106 @@ void cargarAlumnos(char nombre[][50],char sexo[], int legajo[], int nota1[], int
     scanf("%d",&nota3[numeroAlumno]);
     promedio[numeroAlumno]=calcularPromedio( nota1[numeroAlumno],nota2[numeroAlumno],nota3[numeroAlumno]);
 
+    numeroAlumno++;
+    return numeroAlumno;
+
 }
-void cargarDatos(char nombre[][50], char sexo[], int legajo[], int nota1[], int nota2[], int nota3[], float promedio[])
+
+void cargarDatos(char nombre[][50], char sexo[], int edad[], int legajo[], int nota1[], int nota2[], int nota3[], int cant, float promedio[])
 {
     int i;
 
-    printf("%20s %6s %6s %6s %6s %6s %8s", "nombre", "sexo", "legajo", "nota 1", "nota2", "nota3", "promedio\n");
-    for (i=0; i<T; i++)
+    printf("%20s %6s %6s %6s %6s %6s %6s %8s", "nombre", "sexo", "edad", "legajo", "nota 1", "nota2", "nota3", "promedio\n");
+    for (i=0; i<cant; i++)
     {
-        printf("%20s %6c %6d %6d %6d %6d %8.2f \n",nombre[i], sexo[i], legajo[i], nota1[i], nota2[i], nota3[i], promedio[i]);
+        if(edad[i]!=-1)
+        {
+            printf("%20s %6c %6d %6d %6d %6d %6d %8.2f \n",nombre[i], sexo[i], edad[i], legajo[i], nota1[i], nota2[i], nota3[i], promedio[i]);
+        }
+
     }
     system("pause");
 }
-void inicializarvector(char nombre[][50], char sexo[],int legajo[], int nota1[], int nota2[], int nota3[], float promedio[])
+void inicializarvector(char nombre[][50], char sexo[], int edad[], int legajo[], int nota1[], int nota2[], int nota3[], float promedio[])
 {
     int i;
     for(i=0; i<T; i++)
     {
-        strcpy(nombre[i], "NULL");
+        strcpy(nombre[i], " ");
         legajo[i]=-1;
-        nota1[i]=-1;
-        nota2[i]=-1;
-        nota3[i]=-1;
+        nota1[i]=0;
+        nota2[i]=0;
+        nota3[i]=0;
+        edad[i]=-1;
         sexo[i]='N';
 
     }
 }
-void seleccionDatos(char nombre[][50],char sexo[], int legajo[], int nota1[], int nota2[], int nota3[], float promedio[])
+
+void seleccionDatos(char nombre[][50],char sexo[], int edad[], int legajo[], int nota1[], int nota2[], int nota3[], int cant, float promedio[])
 {
     int ingreseLegajo;
     int i;
+    char respuesta;
 
-    printf("%20s %6s %6s %6s \n", "opcion", "sexo", "nombre", "legajo");
-    for (i=0; i<T; i++)
-    {
-            printf("%20d %6s %6c %6d\n", i,nombre[i], sexo[i], legajo[i]);
-    }
-    printf("Seleccion: ");
+    printf("ingrese legajo: ");
     scanf("%d",&ingreseLegajo);
-
-   /* while(isdigit(ingreseLegajo)!=0&&(ingreseLegajo>T||ingreseLegajo<0))
+    for(i=0;i<=cant;i++)
     {
-        printf("LEGAJO INEXISTENTE, REINGRESAR...\n");
-
-        printf("%20s %6s %6s %6s \n", "opcion", "sexo", "nombre", "legajo");
-        for (i=0; i<T; i++)
+        if(ingreseLegajo==legajo[i])
         {
-                printf("%20d %6s %6c %6d\n", i,nombre[i], sexo[i], legajo[i]);
+            printf("Se a encontrado legajo!!!\n");
+            printf("%20s %6s %6s %6s %6s %6s %6s %8s", "nombre", "sexo", "edad", "legajo", "nota 1", "nota2", "nota3", "promedio\n");
+            printf("%20s %6c %6d %6d %6d %6d %6d %8.2f \n",nombre[i], sexo[i], edad[i], legajo[i], nota1[i], nota2[i], nota3[i], promedio[i]);
+            printf("¿Desea realizar cambios?(s/n)");
+            fflush(stdin);
+            scanf("%c",&respuesta);
+            if(respuesta=='s')
+            {
+                modificacion(nota1,nota2,nota3,i,promedio);
+            }else
+            {
+                 break;
+            }
         }
-        printf("Seleccion: ");
-        scanf("%d",&ingreseLegajo);
-    }*/
-    cargarAlumnos( nombre, sexo, legajo, nota1, nota2, nota3, ingreseLegajo, promedio);
+    }
+    if(i==4)
+    {
+        printf("No se a encontrado legajo");
+    }
+
 }
 
 
-void calculoDePromedios(char nombre[][50], int legajo[], int nota1[], int nota2[], int nota3[], float promedio[])
+void modificacion( int nota1[], int nota2[], int nota3[],int numeroAlumno, float promedio[])
+{
+    printf("Ingrese nota 1: ");
+    scanf("%d",&nota1[numeroAlumno]);
+    printf("Ingrese nota 2: ");
+    scanf("%d",&nota2[numeroAlumno]);
+    printf("Ingrese nota 3: ");
+    scanf("%d",&nota3[numeroAlumno]);
+
+    promedio[numeroAlumno]=calcularPromedio( nota1[numeroAlumno],nota2[numeroAlumno],nota3[numeroAlumno]);
+}
+
+void calculoDePromedios(char nombre[][50], int legajo[], int cantAlumnos, float promedio[])
 {
     int i;
     int flag=0;
     char aprobados[T][50];
     char alumnoMayor[50];
     char alumnoMenor[50];
-    int promedioMayor;
-    int promedioMenor;
+    float promedioMayor;
+    float promedioMenor;
     int alumnosAprobados=0;
     int alumnoDesaprobados=0;
+    int contador=0;
     float porcentajeDesaprobados;
     float porcentajeAprobados;
 
 
-    for(i=0;i<T;i++)
+    for(i=0;i<cantAlumnos;i++)
     {
         if(promedio[i]>=6 && legajo[i]!=-1)
         {
@@ -136,52 +168,308 @@ void calculoDePromedios(char nombre[][50], int legajo[], int nota1[], int nota2[
             alumnosAprobados++;
         }else
         {
-            if(promedio[i]>=6 && legajo[i]!=-1)
+            if(promedio[i]<6 && legajo[i]!=-1)
             {
                 alumnoDesaprobados++;
             }
         }
 
-        if(flag==0)
+        if(flag==0&&strcmp(nombre[i]," ")!=0)
         {
             strcpy(alumnoMenor,nombre[i]);
             strcpy(alumnoMayor,nombre[i]);
             promedioMayor=promedio[i];
             promedioMenor=promedio[i];
+            contador++;
             flag=1;
         }else
         {
-            if(promedioMayor<promedio[i])
+            if(promedioMayor<promedio[i]&&strcmp(nombre[i]," ")!=0)
             {
                 strcpy(alumnoMayor,nombre[i]);
                 promedioMayor=promedio[i];
+                contador++;
             }else
             {
-                if(promedioMenor>promedio[i])
+                if(promedioMenor>promedio[i]&&strcmp(nombre[i]," ")!=0)
                 {
                     strcpy(alumnoMenor,nombre[i]);
                     promedioMenor=promedio[i];
+                    contador++;
                 }
             }
         }
     }
-    porcentajeAprobados=promedioPromedio(alumnosAprobados);
-    porcentajeDesaprobados=promedioPromedio(alumnoDesaprobados);
+    if(contador!=0)
+    {
+        porcentajeAprobados=promedioPromedio(alumnosAprobados,contador);
+        porcentajeDesaprobados=promedioPromedio(alumnoDesaprobados,contador);
+    }
 
-    cargarPromedios(aprobados,alumnoMayor, alumnoMenor,promedioMayor,promedioMenor, alumnosAprobados,  alumnosDesaprobados,  promedioAprobados[],  promedioDesaprobados[])
-{
+
+    cargarPromedios(aprobados,alumnoMayor, alumnoMenor,promedioMayor,promedioMenor, alumnosAprobados,  alumnoDesaprobados, cantAlumnos,  porcentajeAprobados,  porcentajeDesaprobados);
+
 }
 
-void cargarPromedios(char aprobados[][50], char alumnoMayor[50], char alumnoMenor[50], int promedioMayor, int promedioMenor, int alumnosAprobados, int alumnosDesaprobados, float promedioAprobados[], float promedioDesaprobados[])
+void cargarPromedios(char aprobados[][50], char alumnoMayor[50], char alumnoMenor[50], float promedioMayor, float promedioMenor, int alumnosAprobados, int alumnosDesaprobados, int cant, float promedioAprobados, float promedioDesaprobados)
 {
     int i;
     printf("%20s \n", "Aprobados");
-    for (i=0; i<T; i++)
+    for (i=0; i<alumnosAprobados; i++)
     {
-            printf("%20s\n",alumnoMayor );
+        printf("%20s\n",aprobados[i] );
     }
+
+    printf("\nEl mayor promedio es de %s con %.2f", alumnoMayor, promedioMayor);
+    printf("\nEl menor promedio es de %s con %.2f", alumnoMenor, promedioMenor);
+    printf("\ncantidad de desaprobados %d", alumnosDesaprobados);
+    printf("\nPorcentaje: %.2f ",promedioDesaprobados);
+    printf("\ncantidad de aprobados %d", alumnosAprobados);
+    printf("\nPorcentaje: %.2f ",promedioAprobados);
+
     system("pause");
+
 }
 
+void ordenarNombre(char nombre[][50], char sexo[], int edad[], int legajo[], int nota1[], int nota2[], int nota3[], int cant, float promedio[])
+{
+    int i;
+    int j;
+    char temp[50];
+    char tempSexo;
+    int tempEdad;
+    int tempLegajo;
+    int tempNumero1;
+    int tempNumero2;
+    int tempNumero3;
+
+    float tempFloat;
+
+    for(i=0;i<cant-1;i++)
+    {
+        for(j=i+1;j<cant;j++)
+        {
+            if(stricmp(nombre[j],nombre[i])<0)
+            {
+                strcpy(temp,nombre[i]);
+                strcpy(nombre[i],nombre[j]);
+                strcpy(nombre[j],temp);
+
+                tempSexo=sexo[i];
+                sexo[i]=sexo[j];
+                sexo[j]=tempSexo;
+
+                tempEdad=edad[i];
+                edad[i]=edad[j];
+                edad[j]=tempEdad;
+
+                tempLegajo=legajo[i];
+                legajo[i]=legajo[j];
+                legajo[j]=tempLegajo;
+
+                tempNumero1=nota1[i];
+                nota1[i]=nota1[j];
+                nota1[j]=tempNumero1;
+
+                tempNumero2=nota2[i];
+                nota2[i]=nota2[j];
+                nota2[j]=tempNumero2;
+
+                tempNumero3=nota3[i];
+                nota3[i]=nota3[j];
+                nota3[j]=tempNumero3;
+
+                tempFloat=promedio[i];
+                promedio[i]=promedio[j];
+                promedio[j]=tempFloat;
+            }else
+            {
+                if(stricmp(nombre[j],nombre[i])==0&&promedio[j]>promedio[i])
+                {
+                    strcpy(temp,nombre[i]);
+                    strcpy(nombre[i],nombre[j]);
+                    strcpy(nombre[j],temp);
+
+                    tempSexo=sexo[i];
+                    sexo[i]=sexo[j];
+                    sexo[j]=tempSexo;
+
+                    tempEdad=edad[i];
+                    edad[i]=edad[j];
+                    edad[j]=tempEdad;
+
+                    tempLegajo=legajo[i];
+                    legajo[i]=legajo[j];
+                    legajo[j]=tempLegajo;
+
+                    tempNumero1=nota1[i];
+                    nota1[i]=nota1[j];
+                    nota1[j]=tempNumero1;
+
+                    tempNumero2=nota2[i];
+                    nota2[i]=nota2[j];
+                    nota2[j]=tempNumero2;
+
+                    tempNumero3=nota3[i];
+                    nota3[i]=nota3[j];
+                    nota3[j]=tempNumero3;
+
+                    tempFloat=promedio[i];
+                    promedio[i]=promedio[j];
+                    promedio[j]=tempFloat;
+                }
+            }
+        }
+    }
+
+}
+
+void ordenarSexo(char nombre[][50], char sexo[], int edad[], int legajo[], int nota1[], int nota2[], int nota3[], int cant, float promedio[])
+{
+    int i;
+    int j;
+    char temp[50];
+    char tempSexo;
+    int tempEdad;
+    int tempLegajo;
+    int tempNumero1;
+    int tempNumero2;
+    int tempNumero3;
+    float tempFloat;
+
+    for(i=0;i<T-1;i++)
+    {
+        for(j=i+1;j<T;j++)
+        {
+            if(sexo[j]=='F')
+            {
+                strcpy(temp,nombre[i]);
+                strcpy(nombre[i],nombre[j]);
+                strcpy(nombre[j],temp);
+
+                tempSexo=sexo[i];
+                sexo[i]=sexo[j];
+                sexo[j]=tempSexo;
+
+                tempEdad=edad[i];
+                edad[i]=edad[j];
+                edad[j]=tempEdad;
+
+                tempLegajo=legajo[i];
+                legajo[i]=legajo[j];
+                legajo[j]=tempLegajo;
+
+                tempNumero1=nota1[i];
+                nota1[i]=nota1[j];
+                nota1[j]=tempNumero1;
+
+                tempNumero2=nota2[i];
+                nota2[i]=nota2[j];
+                nota2[j]=tempNumero2;
+
+                tempNumero3=nota3[i];
+                nota3[i]=nota3[j];
+                nota3[j]=tempNumero3;
+
+                tempFloat=promedio[i];
+                promedio[i]=promedio[j];
+                promedio[j]=tempFloat;
+            }
+        }
+    }
+}
+void mostrarJuanes(char nombre[][50], char sexo[], int edad[], int legajo[], int nota1[], int nota2[], int nota3[], int cant, float promedio[])
+{
+    int i;
+
+    printf("%20s \n", "Los que se llaman juan");
+
+    printf("%20s %6s %6s %6s %6s %6s %6s %8s", "nombre", "sexo", "edad", "legajo", "nota 1", "nota2", "nota3", "promedio\n");
+
+    for (i=0; i<cant; i++)
+    {
+        if(stricmp(nombre[i],"juan")==0)
+        {
+            printf("%20s %6c %6d %6d %6d %6d %6d %8.2f \n",nombre[i], sexo[i], edad[i], legajo[i], nota1[i], nota2[i], nota3[i], promedio[i]);
+        }
+    }
+    system("pause");
+
+}
+
+void mostrarP(char nombre[][50], char sexo[], int edad[], int legajo[], int nota1[], int nota2[], int nota3[], int cant, float promedio[])
+{
+    int i;
+    printf("%20s \n", "Los que empiezan con P");
+
+    printf("%20s %6s %6s %6s %6s %6s %6s %8s", "nombre", "sexo", "edad", "legajo", "nota 1", "nota2", "nota3", "promedio\n");
+
+        for (i=0; i<cant; i++)
+        {
+            if(nombre[i][0]=='p')
+            {
+                printf("%20s %6c %6d %6d %6d %6d %6d %8.2f \n",nombre[i], sexo[i], edad[i], legajo[i], nota1[i], nota2[i], nota3[i], promedio[i]);
+            }
+        }
+
+    system("pause");
 
 
+}
+
+void porcentajeEdad(int edad[], int cant)
+{
+    int edadmenor=0;
+    int edadmedia=0;
+    int edadmayor=0;
+    int i;
+
+    for(i=0;i<=cant;i++)
+    {
+        if(edad[i]>=15&&edad[i]<=18)
+        {
+            edadmenor++;
+        }else
+        {
+            if(edad[i]>=19&&edad[i]<=25)
+            {
+                edadmedia++;
+            }else
+            {
+                if(edad[i]>=26)
+                {
+                    edadmayor++;
+                }
+            }
+        }
+    }
+
+    controlEdad(edadmenor, edadmedia, edadmayor);
+
+
+
+}
+
+void controlEdad( int edadmenor,int edadmedia,int edadmayor)
+{
+    int i;
+
+    printf("EDADES:");
+    printf("\n%6s :","15-18");
+    for (i=1; i<=edadmenor; i++)
+    {
+           printf("#");
+    }
+    printf("\n%6s :","19-25");
+    for (i=1; i<=edadmedia; i++)
+    {
+           printf("#");
+    }
+    printf("\n%6s :","26+");
+    for (i=1; i<=edadmedia; i++)
+    {
+           printf("#");
+    }
+    printf("\n");
+    system("pause");
+}

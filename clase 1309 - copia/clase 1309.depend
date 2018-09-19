@@ -36,3 +36,19 @@
 
 1536906685 c:\users\alumno\desktop\programacion_1_laboratorio_1-master\clase 1309 - copia\input.h
 
+1537395620 source:c:\users\carlos-pc\desktop\algo\nueva carpeta\programacion_1_laboratorio_1-master\clase 1309 - copia\input.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"input.h"
+
+1537396547 c:\users\carlos-pc\desktop\algo\nueva carpeta\programacion_1_laboratorio_1-master\clase 1309 - copia\input.h
+
+1537396547 source:c:\users\carlos-pc\desktop\algo\nueva carpeta\programacion_1_laboratorio_1-master\clase 1309 - copia\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"input.h"
+
