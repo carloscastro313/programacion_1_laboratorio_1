@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1553603713 source:d:\programacion_1_laboratorio_1\nueva carpeta\tp1 menu\ingreso.c
+	<stdio.h>
+	<stdlib.h>
+	"ingreso.h"
+
+1553606123 d:\programacion_1_laboratorio_1\nueva carpeta\tp1 menu\ingreso.h
+
+1553613078 source:d:\programacion_1_laboratorio_1\nueva carpeta\tp1 menu\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ingreso.h"
+	"recursividad.h"
+	"calculo.h"
+
+1553611424 d:\programacion_1_laboratorio_1\nueva carpeta\tp1 menu\recursividad.h
+
+1553606123 source:d:\programacion_1_laboratorio_1\nueva carpeta\tp1 menu\recursividad.c
+	"recursividad.h"
+
+1553612818 source:d:\programacion_1_laboratorio_1\nueva carpeta\tp1 menu\calculo.c
+	<stdio.h>
+	<stdlib.h>
+	"calculo.h"
+
+1553612671 d:\programacion_1_laboratorio_1\nueva carpeta\tp1 menu\calculo.h
+

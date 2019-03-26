@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1553603713 source:d:\programacion_1_laboratorio_1\nueva carpeta\clase 4\ingreso.c
+	<stdio.h>
+	<stdlib.h>
+	"ingreso.h"
+
+1553606123 d:\programacion_1_laboratorio_1\nueva carpeta\clase 4\ingreso.h
+
+1553603091 source:d:\programacion_1_laboratorio_1\nueva carpeta\clase 4\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ingreso.h"
+
+1553606123 source:d:\programacion_1_laboratorio_1\nueva carpeta\clase 4\recursividad.c
+	"recursividad.h"
+
+1553605819 d:\programacion_1_laboratorio_1\nueva carpeta\clase 4\recursividad.h
+
