@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ingreso.h"
-#include "recursividad.h"
+
 #include "calculo.h"
 
 int main()
 {
-    int opcion ,flagDivision ,flagA ,flagB;
+    int opcion ,flagA ,flagB ,flagCalculo ,factorialA ,factorailB;
     float resultadoSuma, resultadoResta, ResultadoMultiplicacion, resultadoDivision,numeroUno ,numeroDos;
-    char seguir='s';
 
     flagA=0;
     flagB=0;
+    flagCalculo=0;
     numeroUno=0;
     numeroDos=0;
 
@@ -31,7 +31,16 @@ int main()
         {
             printf("\n2.Ingresar 2do operando (B=%.2f)",numeroDos);
         }
-        printf("\n3.Calcular\n4.Informar resultados\n5.salir\nElija una opcion");
+        if(flagCalculo==0)
+        {
+            printf("\n3.Calcular");
+        }else
+        {
+            printf("\n3.Calcular  OK!!!!");
+        }
+
+
+        printf("\n4.Informar resultados\n5.salir\nElija una opcion");
         scanf("%d",&opcion);
         system("cls");
 
@@ -39,36 +48,74 @@ int main()
         {
             case 1:
                 numeroUno=pedirEntero("Numero A:");
-                flagA++;
+                flagA=1;
+                if(flagA==1)
+                {
+                    flagCalculo=0;
+                }
                 break;
             case 2:
                 numeroDos=pedirEntero("Numero B:");
-                flagB++;
+                flagB=1;
+                if(flagB==1)
+                {
+                    flagCalculo=0;
+                }
+
                 break;
             case 3:
                 resultadoSuma=calculoSuma(numeroUno ,numeroDos);
                 resultadoResta=calculoResta(numeroUno ,numeroDos);
                 ResultadoMultiplicacion=calculaMultiplicacion(numeroUno ,numeroDos);
-                if(numeroDos==0)
+                if(numeroDos!=0)
                 {
-                    flagDivision++;
-                }else{
                     resultadoDivision=calculoDivision(numeroUno ,numeroDos);
+
                 }
+                if(!(numeroDos<0 || numeroUno<0))
+                {
+                    factorialA=factorial(numeroUno);
+                    factorailB=factorial(numeroDos);
+
+                }
+                flagCalculo++;
+
                 break;
             case 4:
-                printf("Estoy saliendo del programa\n");
+                printf("El resultado de %.2f + %.2f es: %.2f\n",numeroUno ,numeroDos ,resultadoSuma);
+                printf("El resultado de %.2f - %.2f es: %.2f\n",numeroUno ,numeroDos ,resultadoResta);
+                printf("El resultado de %.2f * %.2f es: %.2f\n",numeroUno ,numeroDos ,ResultadoMultiplicacion);
+                if(numeroDos!=0)
+                {
+                    printf("El resultado de %.2f / %.2f es: %.2f\n",numeroUno ,numeroDos ,resultadoDivision);
+                }else
+                {
+                    printf("No es posible dividir por cero\n");
+                }
+                if(numeroDos<0 || numeroUno<0)
+                {
+                    printf("No existen los factoriales negativos\n");
+                }else
+                {
+                    printf("El factorial de %.0f es: %d y El factorial de %.0f es: %d",numeroUno ,factorialA ,numeroDos ,factorailB);
+
+                }
+                system("pause");
+
                 break;
             case 5:
                 printf("Que tenga un buen dia!!!");
                 system("pause");
+
                 break;
             default:
                 printf("no ingreso una opcion valida\n");
+
                 break;
         }
         system("cls");
-    }while(seguir!='n');
+
+    }while(opcion!=5);
 
 
     return 0;

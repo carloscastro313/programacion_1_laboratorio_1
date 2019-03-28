@@ -42,10 +42,6 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="recursividad.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="recursividad.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
