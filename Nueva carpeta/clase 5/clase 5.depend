@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1554141256 source:d:\carlos castro\programacion_1_laboratorio_1\nueva carpeta\clase 5\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ingreso.h"
+
+1554141901 source:d:\carlos castro\programacion_1_laboratorio_1\nueva carpeta\clase 5\ingreso.c
+	<stdio.h>
+	<stdlib.h>
+	"ingreso.h"
+
+1554140920 d:\carlos castro\programacion_1_laboratorio_1\nueva carpeta\clase 5\ingreso.h
+
