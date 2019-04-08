@@ -1,5 +1,6 @@
 void cargarVector(int[] ,int);
 void cargarPantalla(int[] ,int);
+void ordenaVector(int[] ,int);
 int buscarMaximo(int[] ,int);
 int buscarMinimo(int[] ,int);
 

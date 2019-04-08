@@ -9,8 +9,9 @@ void cargarVector(int numero[], int tam)
     for(i=0;i<tam;i++)
     {
         printf("Ingrese numero:");
-        scanf("%d",&numero[i]);
         fflush(stdin);
+        scanf("%d",&numero[i]);
+
 
     }
 }
@@ -24,6 +25,26 @@ void cargarPantalla(int numeroEntero[] ,int tam)
         printf("%d\n",numeroEntero[i]);
 
     }
+}
+
+void ordenaVector(int numeros[] ,int tam)
+{
+    int i ,j ,aux;
+
+    for(i=0;i<tam-1;i++)
+    {
+        for(j=i+1;j<tam;j++)
+        {
+            printf("i=%d , j= %d\n",numeros[i] ,numeros[j]);
+            if(numeros[i]>numeros[j])
+            {
+                aux=numeros[i];
+                numeros[i]=numeros[j];
+                numeros[j]=aux;
+            }
+        }
+    }
+
 }
 
 int buscarMaximo(int numeroEntero[] ,int tam)
