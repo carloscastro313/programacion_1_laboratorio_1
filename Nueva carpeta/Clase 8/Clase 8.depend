@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1555340329 source:d:\castro carlos\programacion_1_laboratorio_1\nueva carpeta\clase 8\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"pedirEmpleado.h"
+
+1555339778 source:d:\castro carlos\programacion_1_laboratorio_1\nueva carpeta\clase 8\cargardatos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"cargarDatos.h"
+
+1555339884 d:\castro carlos\programacion_1_laboratorio_1\nueva carpeta\clase 8\cargardatos.h
+
+1555338572 source:d:\castro carlos\programacion_1_laboratorio_1\nueva carpeta\clase 8\pedirempleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"pedirEmpleado.h"
+
+1555339884 d:\castro carlos\programacion_1_laboratorio_1\nueva carpeta\clase 8\pedirempleado.h
+
+1555340438 source:d:\castro carlos\programacion_1_laboratorio_1\nueva carpeta\clase 8\empleado.c
+
