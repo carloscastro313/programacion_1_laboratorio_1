@@ -10,14 +10,9 @@ int main()
 {
     eEmpleado unEmpleado[T];
     char opcion;
+    int indice, seleccion, posicion;
 
-    flagA=0;
-    flagB=0;
-    flagCalculo=0;
-    numeroA=0;
-    numeroB=0;
-
-    inicializarEmpleados(unEmpleado, T);
+    //inicializarEmpleados(unEmpleado, T);
 
     do
     {
@@ -31,23 +26,44 @@ int main()
         switch(opcion)
         {
             case '1':
-                crearEmpleado(unEmpleado ,T);
+
+                indice=buscarLibre(unEmpleado, T);
+                if(indice!=-1)
+                {
+                    crearEmpleado(unEmpleado ,indice);
+
+                }else
+                {
+                    printf("No hay espacio disponible...");
+
+                }
+
                 break;
             case '2':
-                 mostrarEmpleado(unEmpleado ,T);
+
+                mostrarEmpleados(unEmpleado ,T);
+
                 break;
             case '3':
-                seleccionarEmpleado(unEmpleado ,T);
+
+                seleccion=pedirEntero("Ingrese legajo: ");
+                posicion=buscarUno(datosEmpleado, tam, seleccion);
+                mostrarEmpleado(unEmpleado ,posicion);
+
                 break;
             case '4':
+                seleccion=pedirEntero("Ingrese legajo: ");
+                posicion=borrarUno(datosEmpleado, tam, seleccion);
 
                 break;
             case '5':
+
                 printf("Que tenga un buen dia!!!\n");
                 system("pause");
 
                 break;
             default:
+
                 printf("no ingreso una opcion valida\n");
                 system("pause");
 

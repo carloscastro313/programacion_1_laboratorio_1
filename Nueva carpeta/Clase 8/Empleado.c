@@ -6,7 +6,6 @@
 #define LIBRE 0
 #define OCUPADO 1
 
-
 void inicializarEmpleados(eEmpleado datosInicializados[], int tam)
 {
     int i;
@@ -18,12 +17,25 @@ void inicializarEmpleados(eEmpleado datosInicializados[], int tam)
     }
 }
 
-void crearEmpleado(eEmpleado empleadoIngresado[], int tam)
+int buscarLibre(eEmpleado vectorLibre[], int tam)
 {
     int i;
 
     for(i=0;i<tam;i++)
     {
+        if(vectorLibre[i].estado==0)
+        {
+            break;
+
+        }
+
+    }
+    return i;
+}
+
+void crearEmpleado(eEmpleado empleadoIngresado[], int i)
+{
+
         printf("Ingrese legajo: ");
         scanf("%d",&empleadoIngresado[i].legajo);
         printf("Ingrese nombre: ");
@@ -36,28 +48,29 @@ void crearEmpleado(eEmpleado empleadoIngresado[], int tam)
         scanf("%f",&empleadoIngresado[i].sueldoBruto);
 
         empleadoIngresado[i].sueldoNeto=empleadoIngresado[i].sueldoBruto*0.85;
+        empleadoIngresado[i].estado=OCUPADO;
         system("cls");
-    }
+
 }
 
-void mostrarEmpleado(eEmpleado datosMostrados[], int tam)
+void mostrarEmpleados(eEmpleado datosMostrados[], int tam)
 {
     int i;
     for(i=0;i<tam;i++)
     {
-        printf("%d--%s--%c--%.2f\n", datosMostrados[i].legajo ,datosMostrados[i].nombre ,datosMostrados[i].sexo ,datosMostrados[i].sueldoNeto);
+        if(datosMostrados[i].estado==1)
+        {
+            printf("%d--%s--%c--%.2f\n", datosMostrados[i].legajo ,datosMostrados[i].nombre ,datosMostrados[i].sexo ,datosMostrados[i].sueldoNeto);
+
+        }
+
     }
+    system("pause");
 }
 
 
-void seleccionarEmpleado(eEmpleado datosEmpleado[], int tam)
+void mostrarEmpleado(eEmpleado datosEmpleado[], int indice)
 {
-    int seleccion, posicion;
-
-    seleccion=pedirEntero("Ingrese legajo: ");
-    posicion=buscarLegajo(datosEmpleado, tam, seleccion);
-
-
     if(posicion!=-1)
     {
         printf("%d--%s--%c--%.2f\n", datosEmpleado[posicion].legajo ,datosEmpleado[posicion].nombre ,datosEmpleado[posicion].sexo ,datosEmpleado[posicion].sueldoNeto);
@@ -80,7 +93,7 @@ int pedirEntero(char texto[])
 
     return numero;
 }
-int buscarLegajo(eEmpleado datoBuscado[], int tam, int legajo)
+int buscarUno(eEmpleado datoBuscado[], int tam, int legajo)
 {
     int flag, i;
 
@@ -104,3 +117,27 @@ int buscarLegajo(eEmpleado datoBuscado[], int tam, int legajo)
 
 }
 
+int borrarUno(eEmpleado datoBorrado[], int tam, int legajo)
+{
+    int flag, i;
+
+    flag=0;
+
+    for(i=0;i<tam;i++)
+    {
+        if(legajo==datoBorrado[i].legajo)
+        {
+            flag=1;
+
+            break;
+        }
+    }
+
+    if(flag==0)
+    {
+        i=-1;
+    }
+
+    return i;
+
+}
