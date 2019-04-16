@@ -17,6 +17,17 @@ void inicializarEmpleados(eEmpleado datosInicializados[], int tam)
     }
 }
 
+char opciones(char mensaje[])
+{
+    char opcionSelecionada;
+    printf("%s",mensaje);
+    fflush(stdin);
+    scanf("%c",&opcionSelecionada);
+    system("cls");
+
+    return opcionSelecionada;
+}
+
 int buscarLibre(eEmpleado vectorLibre[], int tam)
 {
     int i;
@@ -117,6 +128,38 @@ void buscarModificarSueldo(eEmpleado buscarSueldo[], int tam)
         system("pause");
     }
 }
+void bajaEmpleado(eEmpleado darBaja[], int tam)
+{
+    int seleccion, indice, buffer;
+    char respuesta;
+
+    seleccion=pedirEntero("Ingrese legajo a modificar: ");
+    indice=buscarUno(darBaja, tam, seleccion);
+
+    if(indice!=-1)
+    {
+        buffer=LIBRE;
+
+    }else
+    {
+        printf("No existe empleado\n");
+
+        system("pause");
+    }
+
+    do{
+       printf("Esta seguro de la modificacion?(s/n)...");
+       fflush(stdin);
+       scanf("%c",&respuesta);
+
+    }while(respuesta!='s'&&respuesta!='n');
+
+    if(respuesta=='s')
+    {
+        darBaja[indice].estado=buffer;
+
+    }
+}
 
 int pedirEntero(char texto[])
 {
@@ -148,30 +191,7 @@ int buscarUno(eEmpleado datoBuscado[], int tam, int legajo)
     return indice;
 }
 
-int borrarUno(eEmpleado datoBorrado[], int tam, int legajo)
-{
-    int flag, i;
 
-    flag=0;
-
-    for(i=0;i<tam;i++)
-    {
-        if(legajo==datoBorrado[i].legajo&&datoBorrado[i].estado==1)
-        {
-            flag=1;
-
-            break;
-        }
-    }
-
-    if(flag==0)
-    {
-        i=-1;
-    }
-
-    return i;
-
-}
 float modificarSueldo(eEmpleado sueldoModificado)
 {
     float buffer;

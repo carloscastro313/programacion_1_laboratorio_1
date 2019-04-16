@@ -10,13 +10,14 @@ typedef struct
 }eEmpleado;
 
 void inicializarEmpleados(eEmpleado[], int);
+char opciones(char[]);
 int buscarLibre(eEmpleado[], int);
 void crearEmpleado(eEmpleado[], int);
 void mostrarEmpleados(eEmpleado[], int);
 void mostrarEmpleado(eEmpleado[], int);
 void desplegarDatos(eEmpleado);
 void buscarModificarSueldo(eEmpleado[], int);
+void bajaEmpleado(eEmpleado[], int);
 int pedirEntero(char texto[]);
 int buscarUno(eEmpleado[], int, int);
-int borrarUno(eEmpleado[], int, int);
 float modificarSueldo(eEmpleado);

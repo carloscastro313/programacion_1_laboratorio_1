@@ -16,7 +16,7 @@ int main()
 
     do
     {
-        opcion=opciones("\n1.Alta\n2.Mostrar\n3.Buscar empleado\n4.Baja\n5.Modificar\n6.Salir\nElija una opcion:");
+        opcion=opciones("\n1.Alta\n2.Baja\n3.Buscar empleado\n4.Mostrar\n5.Modificar\n6.Salir\nElija una opcion:");
 
 
         switch(opcion)
@@ -26,7 +26,7 @@ int main()
 
             break;
             case '2':
-                mostrarEmpleados(unEmpleado ,T);
+                bajaEmpleado(unEmpleado, T);
 
             break;
             case '3':
@@ -34,8 +34,7 @@ int main()
 
             break;
             case '4':
-               // seleccion=pedirEntero("Ingrese legajo: ");
-               // posicion=borrarUno(unEmpleado, T, seleccion);
+                mostrarEmpleados(unEmpleado ,T);
 
             break;
             case '5':
@@ -62,13 +61,4 @@ int main()
 }
 
 
-char opciones(char mensaje[])
-{
-    char opcionSelecionada;
-    printf("%s",mensaje);
-    fflush(stdin);
-    scanf("%c",&opcionSelecionada);
-    system("cls");
 
-    return opcionSelecionada;
-}
