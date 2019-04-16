@@ -33,9 +33,12 @@ int buscarLibre(eEmpleado vectorLibre[], int tam)
     return i;
 }
 
-void crearEmpleado(eEmpleado empleadoIngresado[], int i)
+void crearEmpleado(eEmpleado empleadoIngresado[], int tam)
 {
-
+    int i;
+    i=buscarLibre(empleadoIngresado, tam);
+    if(i!=-1)
+    {
         printf("Ingrese legajo: ");
         scanf("%d",&empleadoIngresado[i].legajo);
         printf("Ingrese nombre: ");
@@ -51,6 +54,12 @@ void crearEmpleado(eEmpleado empleadoIngresado[], int i)
         empleadoIngresado[i].estado=OCUPADO;
         system("cls");
 
+    }else
+    {
+        printf("No hay espacio disponible...");
+
+    }
+
 }
 
 void mostrarEmpleados(eEmpleado datosMostrados[], int tam)
@@ -60,8 +69,7 @@ void mostrarEmpleados(eEmpleado datosMostrados[], int tam)
     {
         if(datosMostrados[i].estado==1)
         {
-            printf("%d--%s--%c--%.2f\n", datosMostrados[i].legajo ,datosMostrados[i].nombre ,datosMostrados[i].sexo ,datosMostrados[i].sueldoNeto);
-
+           desplegarDatos(datosMostrados[i]);
         }
 
     }
@@ -69,17 +77,45 @@ void mostrarEmpleados(eEmpleado datosMostrados[], int tam)
 }
 
 
-void mostrarEmpleado(eEmpleado datosEmpleado[], int indice)
+void mostrarEmpleado(eEmpleado datosEmpleado[], int tam)
 {
-    if(posicion!=-1)
+    int seleccion, indice;
+    seleccion=pedirEntero("Ingrese legajo: ");
+    indice=buscarUno(datosEmpleado, tam, seleccion);
+
+    if(indice!=-1)
     {
-        printf("%d--%s--%c--%.2f\n", datosEmpleado[posicion].legajo ,datosEmpleado[posicion].nombre ,datosEmpleado[posicion].sexo ,datosEmpleado[posicion].sueldoNeto);
+        desplegarDatos(datosEmpleado[indice]);
 
     }else
     {
-        printf("No existe empleado");
+        printf("No existe empleado\n");
     }
+    system("pause");
+}
 
+void desplegarDatos(eEmpleado datosMostrados)
+{
+    printf("%d--%s--%c--%.2f\n", datosMostrados.legajo ,datosMostrados.nombre ,datosMostrados.sexo ,datosMostrados.sueldoNeto);
+
+}
+
+void buscarModificarSueldo(eEmpleado buscarSueldo[], int tam)
+{
+    int seleccion, indice;
+    seleccion=pedirEntero("Ingrese legajo a modificar: ");
+    indice=buscarUno(buscarSueldo, tam, seleccion);
+
+    if(indice!=-1)
+    {
+        buscarSueldo[indice].sueldoNeto=modificarSueldo(buscarSueldo[indice]);
+
+    }else
+    {
+        printf("No existe empleado\n");
+
+        system("pause");
+    }
 }
 
 int pedirEntero(char texto[])
@@ -93,7 +129,26 @@ int pedirEntero(char texto[])
 
     return numero;
 }
+
 int buscarUno(eEmpleado datoBuscado[], int tam, int legajo)
+{
+    int indice, i;
+
+    indice=-1;
+
+    for(i=0;i<tam;i++)
+    {
+        if(legajo==datoBuscado[i].legajo)
+        {
+            indice=i;
+            break;
+        }
+    }
+
+    return indice;
+}
+
+int borrarUno(eEmpleado datoBorrado[], int tam, int legajo)
 {
     int flag, i;
 
@@ -101,9 +156,10 @@ int buscarUno(eEmpleado datoBuscado[], int tam, int legajo)
 
     for(i=0;i<tam;i++)
     {
-        if(legajo==datoBuscado[i].legajo)
+        if(legajo==datoBorrado[i].legajo&&datoBorrado[i].estado==1)
         {
             flag=1;
+
             break;
         }
     }
@@ -116,28 +172,26 @@ int buscarUno(eEmpleado datoBuscado[], int tam, int legajo)
     return i;
 
 }
-
-int borrarUno(eEmpleado datoBorrado[], int tam, int legajo)
+float modificarSueldo(eEmpleado sueldoModificado)
 {
-    int flag, i;
+    float buffer;
+    char respuesta;
+    desplegarDatos(sueldoModificado);
+    printf("Actualiza valor del sueldo bruto: ");
+    scanf("%f",&sueldoModificado.sueldoBruto);
+    buffer=sueldoModificado.sueldoBruto*0.85;
 
-    flag=0;
+    do{
+       printf("Esta seguro de la modificacion?(s/n)...");
+       fflush(stdin);
+       scanf("%c",&respuesta);
 
-    for(i=0;i<tam;i++)
+    }while(respuesta!='s'&&respuesta!='n');
+
+    if(respuesta=='s')
     {
-        if(legajo==datoBorrado[i].legajo)
-        {
-            flag=1;
-
-            break;
-        }
+        sueldoModificado.sueldoNeto=buffer;
     }
 
-    if(flag==0)
-    {
-        i=-1;
-    }
-
-    return i;
-
+    return sueldoModificado.sueldoNeto;
 }

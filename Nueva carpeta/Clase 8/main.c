@@ -5,77 +5,70 @@
 #include "Empleado.h"
 #define T 2
 
+char opciones(char[]);
 
 int main()
 {
     eEmpleado unEmpleado[T];
     char opcion;
-    int indice, seleccion, posicion;
 
-    //inicializarEmpleados(unEmpleado, T);
+    inicializarEmpleados(unEmpleado, T);
 
     do
     {
+        opcion=opciones("\n1.Alta\n2.Mostrar\n3.Buscar empleado\n4.Baja\n5.Modificar\n6.Salir\nElija una opcion:");
 
-        printf("\n1.Cargar empleado\n2.Mostrar empleados\n3.Buscar empleado\n4.Dar de baja\n5.salir\nElija una opcion:");
-        fflush(stdin);
-        scanf("%c",&opcion);
-
-        system("cls");
 
         switch(opcion)
         {
             case '1':
+                crearEmpleado(unEmpleado ,T);
 
-                indice=buscarLibre(unEmpleado, T);
-                if(indice!=-1)
-                {
-                    crearEmpleado(unEmpleado ,indice);
-
-                }else
-                {
-                    printf("No hay espacio disponible...");
-
-                }
-
-                break;
+            break;
             case '2':
-
                 mostrarEmpleados(unEmpleado ,T);
 
-                break;
+            break;
             case '3':
+                mostrarEmpleado(unEmpleado, T);
 
-                seleccion=pedirEntero("Ingrese legajo: ");
-                posicion=buscarUno(datosEmpleado, tam, seleccion);
-                mostrarEmpleado(unEmpleado ,posicion);
-
-                break;
+            break;
             case '4':
-                seleccion=pedirEntero("Ingrese legajo: ");
-                posicion=borrarUno(datosEmpleado, tam, seleccion);
+               // seleccion=pedirEntero("Ingrese legajo: ");
+               // posicion=borrarUno(unEmpleado, T, seleccion);
 
-                break;
+            break;
             case '5':
+                buscarModificarSueldo(unEmpleado, T);
 
+            break;
+            case '6':
                 printf("Que tenga un buen dia!!!\n");
                 system("pause");
 
-                break;
+            break;
             default:
-
                 printf("no ingreso una opcion valida\n");
                 system("pause");
 
-                break;
+            break;
         }
         system("cls");
 
-    }while(opcion!='5');
+    }while(opcion!='6');
 
 
     return 0;
 }
 
 
+char opciones(char mensaje[])
+{
+    char opcionSelecionada;
+    printf("%s",mensaje);
+    fflush(stdin);
+    scanf("%c",&opcionSelecionada);
+    system("cls");
 
+    return opcionSelecionada;
+}
