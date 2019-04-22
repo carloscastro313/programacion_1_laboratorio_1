@@ -21,3 +21,7 @@ void bajaEmpleado(eEmpleado[], int);
 int pedirEntero(char texto[]);
 int buscarUno(eEmpleado[], int, int);
 float modificarSueldo(eEmpleado);
+void informeEmpleado(eEmpleado[], int);
+eEmpleado buscarMaximo(eEmpleado[], int);
+int buscarCarlos(eEmpleado[], int);
+void hardcodearDatosEmpleados(eEmpleado[], int);
