@@ -14,6 +14,8 @@ int main()
 
     inicializarEmpleados(unEmpleado, T);
 
+    eSector sectores[3] = {{1,"Contabilidad",100},{2,"Sistemas",200},{3,"RRHH", 150}};
+
     do
     {
         opcion=opciones("\n1.Alta\n2.Baja\n3.Buscar empleado\n4.Mostrar\n5.Informes\n6.Modificar\n7.Salir\nElija una opcion:");
@@ -22,7 +24,7 @@ int main()
         switch(opcion)
         {
             case '1':
-                hardcodearDatosEmpleados(unEmpleado ,T);
+                crearEmpleado(unEmpleado, sectores, T);
 
             break;
             case '2':
@@ -30,19 +32,19 @@ int main()
 
             break;
             case '3':
-                mostrarEmpleado(unEmpleado, T);
+                mostrarEmpleado(unEmpleado, sectores, T);
 
             break;
             case '4':
-                mostrarEmpleados(unEmpleado ,T);
+                mostrarEmpleados(unEmpleado, sectores, T);
 
             break;
             case '5':
-                informeEmpleado(unEmpleado, T);
+                informeEmpleado(unEmpleado, sectores, T);
 
             break;
             case '6':
-                buscarModificarSueldo(unEmpleado, T);
+                buscarModificarSueldo(unEmpleado, sectores, T);
 
             break;
             case '7':
@@ -58,7 +60,7 @@ int main()
         }
         system("cls");
 
-    }while(opcion!='6');
+    }while(opcion!='7');
 
 
     return 0;
