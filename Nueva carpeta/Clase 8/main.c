@@ -1,3 +1,8 @@
+   /* a. Todos los empleados con la descripcion de su sector.
+    b. Por cada sector, todos los empleados que en el trabajan.
+    c. El total de sueldos por sector.
+    d. El sector con mas empleados.*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,20 +20,20 @@ int main()
     inicializarEmpleados(unEmpleado, T);
 
     eSector sectores[3] = {{1,"Contabilidad",100},{2,"Sistemas",200},{3,"RRHH", 150}};
-
+    eSectorAux sectoresAux[3]={{1,0},{2,0},{3,0}};
     do
     {
-        opcion=opciones("\n1.Alta\n2.Baja\n3.Buscar empleado\n4.Mostrar\n5.Informes\n6.Modificar\n7.Salir\nElija una opcion:");
+        opcion=opciones("\n1.Alta\n2.Baja\n3.Buscar empleado\n4.Mostrar\n5.Mostrar por sector\n6.Informes\n7.Informes por sector\n8.Modificar\n9.Salir\nElija una opcion:");
 
 
         switch(opcion)
         {
             case '1':
-                crearEmpleado(unEmpleado, sectores, T);
+                crearEmpleado(unEmpleado, sectores, sectoresAux, T);
 
             break;
             case '2':
-                bajaEmpleado(unEmpleado, T);
+                bajaEmpleado(unEmpleado, sectoresAux, T);
 
             break;
             case '3':
@@ -40,14 +45,22 @@ int main()
 
             break;
             case '5':
-                informeEmpleado(unEmpleado, sectores, T);
+                mostrarSectores(unEmpleado, sectores, T);
 
             break;
             case '6':
-                buscarModificarSueldo(unEmpleado, sectores, T);
+                informeEmpleado(unEmpleado, sectores, T);
 
             break;
             case '7':
+                informeSectores(unEmpleado, sectores, sectoresAux, T);
+
+            break;
+            case '8':
+                buscarModificarSueldo(unEmpleado, sectores, T);
+
+            break;
+            case '9':
                 printf("Que tenga un buen dia!!!\n");
                 system("pause");
 
@@ -60,7 +73,7 @@ int main()
         }
         system("cls");
 
-    }while(opcion!='7');
+    }while(opcion!='9');
 
 
     return 0;
