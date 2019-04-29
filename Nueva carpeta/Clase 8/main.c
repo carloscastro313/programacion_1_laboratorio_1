@@ -15,12 +15,13 @@ char opciones(char[]);
 int main()
 {
     eEmpleado unEmpleado[T];
+
     char opcion;
 
     inicializarEmpleados(unEmpleado, T);
 
     eSector sectores[3] = {{1,"Contabilidad",100},{2,"Sistemas",200},{3,"RRHH", 150}};
-    eSectorAux sectoresAux[3]={{1,0},{2,0},{3,0}};
+
     do
     {
         opcion=opciones("\n1.Alta\n2.Baja\n3.Buscar empleado\n4.Mostrar\n5.Mostrar por sector\n6.Informes\n7.Informes por sector\n8.Modificar\n9.Salir\nElija una opcion:");
@@ -29,11 +30,11 @@ int main()
         switch(opcion)
         {
             case '1':
-                crearEmpleado(unEmpleado, sectores, sectoresAux, T);
+                crearEmpleado(unEmpleado, sectores, T);
 
             break;
             case '2':
-                bajaEmpleado(unEmpleado, sectoresAux, T);
+                bajaEmpleado(unEmpleado, T);
 
             break;
             case '3':
@@ -53,7 +54,7 @@ int main()
 
             break;
             case '7':
-                informeSectores(unEmpleado, sectores, sectoresAux, T);
+                informeSectores(unEmpleado, sectores, T);
 
             break;
             case '8':

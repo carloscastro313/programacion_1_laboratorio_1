@@ -1,6 +1,7 @@
 typedef struct
 {
     int idSector;
+    char descripcion[20];
     int contEmp;
 
 }eSectorAux;
@@ -29,12 +30,12 @@ typedef struct
 void inicializarEmpleados(eEmpleado[], int);
 char opciones(char[]);
 int buscarLibre(eEmpleado[], int);
-void crearEmpleado(eEmpleado[], eSector[], eSectorAux[], int);
+void crearEmpleado(eEmpleado[], eSector[], int);
 void mostrarEmpleados(eEmpleado[], eSector[], int);
 void mostrarEmpleado(eEmpleado[], eSector[], int);
 void desplegarDatos(eEmpleado, eSector[]);
 void buscarModificarSueldo(eEmpleado[], eSector[], int);
-void bajaEmpleado(eEmpleado[], eSectorAux[], int);
+void bajaEmpleado(eEmpleado[], int);
 int pedirEntero(char texto[]);
 int buscarUno(eEmpleado[], int, int);
 float modificarSueldo(eEmpleado, eSector[]);
@@ -43,6 +44,6 @@ eEmpleado buscarMaximo(eEmpleado[], int);
 int buscarCarlos(eEmpleado[], int);
 void mostrarSectores(eEmpleado[], eSector[], int);
 void mostrarSectorEmpleado(eEmpleado[], eSector[], int, int);
-void informeSectores(eEmpleado[], eSector[], eSectorAux[], int);
-void buscarSectorMayor(eSector[], eSectorAux[], int);
+void informeSectores(eEmpleado[], eSector[], int);
+void buscarSectorMayor(eEmpleado[], eSector[], int);
 void calcularSueldoSectores(eEmpleado[], eSector[], int);

@@ -44,7 +44,7 @@ int buscarLibre(eEmpleado vectorLibre[], int tam)
     return i;
 }
 
-void crearEmpleado(eEmpleado empleadoIngresado[], eSector listaSector[], eSectorAux contador[], int tam)
+void crearEmpleado(eEmpleado empleadoIngresado[], eSector listaSector[], int tam)
 {
     int i;
     i=buscarLibre(empleadoIngresado, tam);
@@ -57,7 +57,6 @@ void crearEmpleado(eEmpleado empleadoIngresado[], eSector listaSector[], eSector
         gets(empleadoIngresado[i].nombre);
         printf("Ingrese sector\n1.contabilidad\n2.sistemas\n3.RRHH\nSelecion:");
         scanf("%d",&empleadoIngresado[i].idSector);
-        contador[empleadoIngresado[i].idSector-1].contEmp++;
         printf("Ingrese sexo: ");
         fflush(stdin);
         scanf("%c",&empleadoIngresado[i].sexo);
@@ -152,7 +151,7 @@ void buscarModificarSueldo(eEmpleado buscarSueldo[], eSector listaSectores[], in
         system("pause");
     }
 }
-void bajaEmpleado(eEmpleado darBaja[], eSectorAux contador[], int tam)
+void bajaEmpleado(eEmpleado darBaja[], int tam)
 {
     int seleccion, indice, buffer;
     char respuesta;
@@ -170,7 +169,7 @@ void bajaEmpleado(eEmpleado darBaja[], eSectorAux contador[], int tam)
         if(respuesta=='s')
         {
             darBaja[indice].estado=buffer;
-            contador[darBaja[indice].idSector-1].contEmp--;
+
         }
 
     }else
@@ -366,19 +365,39 @@ void mostrarSectorEmpleado(eEmpleado listaEmpleados[], eSector listaSectores[], 
 
     system("pause");
 }
-void informeSectores(eEmpleado listaEmpleados[], eSector listaSectores[], eSectorAux contador[], int tam)
+void informeSectores(eEmpleado listaEmpleados[], eSector listaSectores[], int tam)
 {
 
     calcularSueldoSectores(listaEmpleados, listaSectores, tam);
-    buscarSectorMayor(listaSectores, contador, tam);
+    buscarSectorMayor(listaEmpleados, listaSectores, tam);
     system("pause");
 }
 
-void buscarSectorMayor(eSector listaSectores[], eSectorAux contador[], int tam)
+void buscarSectorMayor(eEmpleado listaEmpleados[], eSector listaSectores[],  int tam)
 {
-    int i, flag, maximo, idMaxima;
+    int i, j, flag, maximo, idMaxima;
+    eSectorAux contador[3];
 
     flag=0;
+    for(i=0;i<3;i++)
+    {
+        contador[i].contEmp=0;
+        contador[i].idSector=i+1;
+        strcpy(contador[i].descripcion, listaSectores[i].descripcion);
+    }
+
+    for(i=0;i<3;i++)
+    {
+        for(j=0;j<tam;j++)
+        {
+            if(contador[i].idSector==(listaEmpleados[j].idSector&&listaEmpleados[j].estado==OCUPADO))
+            {
+                contador[i].contEmp++;
+
+            }
+        }
+        printf("sector %d %s: %d \n",contador[i].idSector, contador[i].descripcion, contador[i].contEmp++);
+    }
 
     for(i=0;i<3;i++)
     {
@@ -389,7 +408,7 @@ void buscarSectorMayor(eSector listaSectores[], eSectorAux contador[], int tam)
             flag=1;
         }
     }
-     printf("El sector con mas empleados es %s con %d empleados\n",listaSectores[idMaxima].descripcion, maximo);
+     printf("El sector con mas empleados es %s con %d empleados\n",contador[idMaxima].descripcion, maximo);
 }
 void calcularSueldoSectores(eEmpleado listaEmpleados[], eSector listaSectores[], int tam)
 {
@@ -400,6 +419,8 @@ void calcularSueldoSectores(eEmpleado listaEmpleados[], eSector listaSectores[],
     sueldototal=0;
     for(j=0;j<3;j++)
     {
+        sueldototal=0;
+
         for(i=0;i<tam;i++)
         {
             if(listaEmpleados[i].idSector==listaSectores[j].idSector&&listaEmpleados[i].estado==OCUPADO)
